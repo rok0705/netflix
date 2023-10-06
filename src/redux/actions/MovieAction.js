@@ -16,9 +16,23 @@ function getMovies() {
     // let data_upcoming = await response_upcoming.json();
 
     // 2. axios
-    const popularMovieApi = await api.get(
+    const popularMovieApi = api.get(
       `/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
     );
+
+    const topratedMovieApi = api.get(
+      `/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    const upcomingMovieApi = api.get(
+      `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    let [popularMovies, topRatedMovies, upcomingMovies] = await Promise.all([
+      popularMovieApi,
+      topratedMovieApi,
+      upcomingMovieApi,
+    ]);
   };
 }
 
