@@ -1,4 +1,4 @@
-import React, { useEffect, useState, CSSProperties } from "react";
+import React, { useEffect } from "react";
 import { movieAction } from "../redux/actions/MovieAction";
 import { useDispatch, useSelector } from "react-redux";
 import Banner from "../components/Banner";
