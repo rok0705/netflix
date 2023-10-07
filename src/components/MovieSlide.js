@@ -32,7 +32,6 @@ const MovieSlide = ({ movies }) => {
           <MovieCard item={item}></MovieCard>
         ))}
       </Carousel>
-      ;
     </div>
   );
 };
