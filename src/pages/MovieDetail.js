@@ -31,10 +31,10 @@ const MovieDetail = () => {
           </Col>
           <Col>
             <Row>1</Row>
-            <Row className="detailpage-title">{movieDetail.title}</Row>
-            <Row className="detailpage-tagline">{movieDetail.tagline}</Row>
+            <Row className="detailpage-title">{movieDetail?.title}</Row>
+            <Row className="detailpage-tagline">{movieDetail?.tagline}</Row>
             <Row>4</Row>
-            <Row className="detailpage-overview">{movieDetail.overview}</Row>
+            <Row className="detailpage-overview">{movieDetail?.overview}</Row>
           </Col>
         </Row>
       </Container>
