@@ -48,4 +48,18 @@ function getMovies() {
   };
 }
 
-export const movieAction = { getMovies };
+function getMovieDetail(id) {
+  return async (dispatch) => {
+    const movieDetailApi = api.get(
+      `/movie/${id}?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    let movieDetail = await movieDetailApi;
+
+    dispatch({ type: "GET_MOVIE_DETAIL_SUCCESS", payload: movieDetail.data });
+
+    console.log("movieDetail:", movieDetail);
+  };
+}
+
+export const movieAction = { getMovies, getMovieDetail };

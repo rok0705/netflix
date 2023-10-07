@@ -1,9 +1,11 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ item }) => {
   const { genreList } = useSelector((state) => state.movie);
+  const navigate = useNavigate();
 
   function searchGenreName(item) {
     for (var i = 0; i < genreList.length; i++) {
@@ -15,6 +17,11 @@ const MovieCard = ({ item }) => {
     return "GenreError";
   }
 
+  const goToDetailPage = () => {
+    console.log("movie.id:", item.id);
+    navigate(`/movies/${item.id}`);
+  };
+
   return (
     <div
       className="card"
@@ -25,7 +32,7 @@ const MovieCard = ({ item }) => {
           ")",
       }}
     >
-      <div className="overlay">
+      <div className="overlay" onClick={goToDetailPage}>
         <h1 className="movieTitle">{item.title}</h1>
         <div>
           {item.genre_ids.map((item, index) => (

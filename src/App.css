@@ -79,3 +79,32 @@
 .movieTitle {
   font-size: 20px;
 }
+
+.movieDetailBg {
+  justify-content: center;
+  background-color: black;
+}
+
+.detailContainer {
+  justify-content: center;
+}
+
+.movie-image {
+  display: flex;
+}
+
+.detailpage-title {
+  color:white;
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
+.detailpage-tagline {
+  color:white;
+  font-size: 20px;
+}
+
+.detailpage-overview {
+  color:white;
+  font-size: 15px;
+}
