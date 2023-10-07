@@ -75,3 +75,7 @@
 .card:hover .overlay {
   opacity: 1;
 }
+
+.movieTitle {
+  font-size: 20px;
+}

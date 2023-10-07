@@ -26,7 +26,7 @@ const MovieCard = ({ item }) => {
       }}
     >
       <div className="overlay">
-        <h1>{item.title}</h1>
+        <h1 className="movieTitle">{item.title}</h1>
         <div>
           {item.genre_ids.map((item, index) => (
             <Badge bg="danger" key={index}>
@@ -36,7 +36,9 @@ const MovieCard = ({ item }) => {
           ))}
         </div>
         <div>
-          <span>{item.vote_average}</span>
+          <span>Rating: {item.vote_average}</span>
+        </div>
+        <div>
           <span>{item.adult ? "18+" : "All Age"}</span>
         </div>
       </div>
