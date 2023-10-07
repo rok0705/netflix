@@ -10,7 +10,7 @@ const api = axios.create({
 api.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log("request start", config);
+    //console.log("request start", config);
     return config;
   },
   function (error) {
