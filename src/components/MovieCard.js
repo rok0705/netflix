@@ -1,8 +1,20 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
+import { useSelector } from "react-redux";
 
 const MovieCard = ({ item }) => {
-  console.log("post_path:", item);
+  const { genreList } = useSelector((state) => state.movie);
+
+  function searchGenreName(item) {
+    for (var i = 0; i < genreList.length; i++) {
+      if (genreList[i].id == item) {
+        return genreList[i].name;
+      }
+    }
+
+    return "GenreError";
+  }
+
   return (
     <div
       className="card"
@@ -16,8 +28,11 @@ const MovieCard = ({ item }) => {
       <div className="overlay">
         <h1>{item.title}</h1>
         <div>
-          {item.genre_ids.map((item) => (
-            <Badge bg="danger">{item}</Badge>
+          {item.genre_ids.map((item, index) => (
+            <Badge bg="danger" key={index}>
+              {/* {searchGenreName(item)} */}
+              {genreList.find((genre) => genre.id == item).name}
+            </Badge>
           ))}
         </div>
         <div>
