@@ -71,7 +71,7 @@ function getMovieDetail(id) {
       },
     });
 
-    console.log("getMovieDetail middleware:", movieDetail);
+    // console.log("getMovieDetail middleware:", movieDetail);
   };
 }
 

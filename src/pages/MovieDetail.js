@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "../redux/actions/MovieAction";
+import axios from "axios";
+import { Button } from "react-bootstrap";
 
 const MovieDetail = () => {
   const dispatch = useDispatch();
@@ -16,16 +18,25 @@ const MovieDetail = () => {
   }, []);
 
   function searchGenreName(id) {
-    console.log("item.id:", id, genreList);
     var i = 0;
     for (i = 0; i < genreList.length; i++) {
-      console.log("i:", i);
-      console.log("genreList[i].id:", genreList[i].id);
       if (genreList[i].id == id) {
         return genreList[i].name;
       }
     }
   }
+
+  const openTrailer = async () => {
+    const keyword = selectedMovie.title;
+    const API_KEY = "AIzaSyBnHPG5Rg6jqxizuI3tjjW7F1qr8CdPWe8";
+    const response = await axios.get(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&key=${API_KEY}`
+    );
+    const videoId =
+      response.data.items[0]?.id?.videoId ||
+      "No video found with given keyword";
+    window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
+  };
 
   return (
     <div className="movieDetailBg">
@@ -141,7 +152,14 @@ const MovieDetail = () => {
               <Col xs={7}></Col>
             </Row>
             <hr className="detailpage-line"></hr>
-            <Row className="detailpage-whiteText">Watch Trailer</Row>
+            <Row className="detailpage-whiteText">
+              <Col xs={3}>
+                <Button onClick={openTrailer} variant="danger">
+                  Watch Trailer
+                </Button>
+              </Col>
+              <Col xs={9}></Col>
+            </Row>
           </Col>
         </Row>
       </Container>
