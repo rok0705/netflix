@@ -12,7 +12,7 @@ function movieReducer(state = initialState, action) {
 
   switch (type) {
     case "GET_MOVIES_SUCCESS":
-      console.log("genrelist:", payload.genreList);
+      // console.log("genrelist:", payload.genreList);
       return {
         ...state,
         popularMovies: payload.popularMovies,
@@ -26,7 +26,7 @@ function movieReducer(state = initialState, action) {
     case "GET_MOVIES_FAILURE":
       return { ...state, loading: false };
     case "GET_MOVIE_DETAIL_SUCCESS":
-      console.log("payload:", payload);
+      // console.log("payload:", payload);
       return { ...state, selectedMovie: payload };
     default:
       return { ...state };

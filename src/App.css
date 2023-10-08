@@ -93,18 +93,52 @@
   display: flex;
 }
 
+.detailpage-genres {
+  margin-bottom:10px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
 .detailpage-title {
   color:white;
   font-size: 50px;
   text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 .detailpage-tagline {
   color:white;
-  font-size: 20px;
+  font-size: 25px;
+  margin-bottom: 15px;
 }
 
 .detailpage-overview {
   color:white;
   font-size: 15px;
+  width:70%;
+}
+
+.detailpage-genre {
+  border-radius:40px
+}
+
+.detailpage-imdbscore {
+  color:white;
+}
+
+.detailpage-imdbline {
+  justify-content: flex-start;
+  width:70%;
+  margin-bottom:10px;
+}
+
+.detailpage-adult {
+  color:red;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.detailpage-infobox {
+  width: 50px;
 }
