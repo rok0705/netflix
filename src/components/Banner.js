@@ -7,7 +7,7 @@ const Banner = ({ movie }) => {
       style={{
         backgroundImage:
           "url(" +
-          `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${movie.poster_path}` +
+          `https://image.tmdb.org/t/p/w1920_and_h1080_multi_faces/${movie.poster_path}` +
           ")",
       }}
     >
