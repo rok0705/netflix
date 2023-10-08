@@ -5,6 +5,7 @@ let initialState = {
   loading: true,
   genreList: [],
   selectedMovie: null,
+  movieReviews: [],
 };
 
 function movieReducer(state = initialState, action) {
@@ -12,7 +13,6 @@ function movieReducer(state = initialState, action) {
 
   switch (type) {
     case "GET_MOVIES_SUCCESS":
-      // console.log("genrelist:", payload.genreList);
       return {
         ...state,
         popularMovies: payload.popularMovies,
@@ -31,6 +31,7 @@ function movieReducer(state = initialState, action) {
         ...state,
         selectedMovie: payload.selectedMovie,
         genreList: payload.genreList,
+        movieReviews: payload.movieReviews,
       };
     default:
       return { ...state };

@@ -162,6 +162,47 @@
   width:70%;
 }
 
+.detailpage-line-review {
+  border-bottom: 2px solid white;
+  width:100%;
+}
+
 .detailpage-trailer {
   width:20px
+}
+
+.card-bg {
+  justify-content: center;
+  background-color: black;
+}
+
+.card-body {
+  background-color: black;
+}
+
+.card-title {
+  color: white;
+  justify-content: center;
+  background-color: black;
+  font-family:Helvetica;
+}
+
+.card-text {
+  color:white;
+  justify-content: center;
+  background-color: black;
+  font-family: 'Helvetica';
+}
+
+.reviewBox {
+  height: auto;
+}
+
+.reviewButtons {
+  padding-top: 100px;
+}
+
+.review-boxBorder {
+  border: 2px solid white;
+  padding: 40px;
 }

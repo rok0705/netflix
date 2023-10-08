@@ -58,9 +58,14 @@ function getMovieDetail(id) {
       `/genre/movie/list?api_key=${API_KEY}&language=en-US&page=1`
     );
 
-    let [movieDetail, genreList] = await Promise.all([
+    const movieReviewApi = api.get(
+      `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    let [movieDetail, genreList, movieReviews] = await Promise.all([
       movieDetailApi,
       genreListApi,
+      movieReviewApi,
     ]);
 
     dispatch({
@@ -68,6 +73,7 @@ function getMovieDetail(id) {
       payload: {
         selectedMovie: movieDetail.data,
         genreList: genreList.data.genres,
+        movieReviews: movieReviews.data.results,
       },
     });
 
