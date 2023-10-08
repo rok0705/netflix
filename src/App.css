@@ -104,18 +104,23 @@
   font-size: 50px;
   text-transform: uppercase;
   margin-bottom: 5px;
+  padding-left: 15px;
 }
 
 .detailpage-tagline {
   color:white;
   font-size: 25px;
   margin-bottom: 15px;
+  padding-left: 15px;
 }
 
 .detailpage-overview {
   color:white;
   font-size: 15px;
   width:70%;
+  padding-left: 15px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .detailpage-genre {
@@ -130,6 +135,7 @@
   justify-content: flex-start;
   width:70%;
   margin-bottom:10px;
+  padding-left: 5px;
 }
 
 .detailpage-adult {
@@ -141,4 +147,17 @@
 
 .detailpage-infobox {
   width: 50px;
+}
+
+.detailpage-whiteText {
+  color:white;
+}
+
+.detailpage-item {
+  margin-bottom:5px;
+}
+
+.detailpage-line {
+  border-bottom: 2px solid white;
+  width:70%;
 }

@@ -71,7 +71,63 @@ const MovieDetail = () => {
               </Col>
               <Col xs={4}></Col>
             </Row>
+            <hr className="detailpage-line"></hr>
             <Row className="detailpage-overview">{selectedMovie?.overview}</Row>
+            <hr className="detailpage-line"></hr>
+            <Row>
+              <Col xs={2} className="detailpage-item">
+                <Badge pill bg="danger">
+                  Budget
+                </Badge>
+              </Col>
+              <Col xs={1}>
+                <div className="detailpage-whiteText">
+                  ${selectedMovie?.budget}
+                </div>
+              </Col>
+              <Col xs={9}></Col>
+            </Row>
+            <Row>
+              <Col xs={2} className="detailpage-item">
+                <Badge pill bg="danger">
+                  Revenue
+                </Badge>
+              </Col>
+              <Col xs={1}>
+                <div className="detailpage-whiteText">
+                  ${selectedMovie?.revenue}
+                </div>
+              </Col>
+              <Col xs={9}></Col>
+            </Row>
+            <Row>
+              <Col xs={2} className="detailpage-item">
+                <Badge pill bg="danger">
+                  Release Day
+                </Badge>
+              </Col>
+              <Col xs={3}>
+                <div className="detailpage-whiteText">
+                  {selectedMovie?.release_date}
+                </div>
+              </Col>
+              <Col xs={7}></Col>
+            </Row>
+            <Row>
+              <Col xs={2} className="detailpage-item">
+                <Badge pill bg="danger">
+                  Time
+                </Badge>
+              </Col>
+              <Col xs={3}>
+                <div className="detailpage-whiteText">
+                  {selectedMovie?.runtime}m
+                </div>
+              </Col>
+              <Col xs={7}></Col>
+            </Row>
+            <hr className="detailpage-line"></hr>
+            <Row className="detailpage-whiteText">Watch Trailer</Row>
           </Col>
         </Row>
       </Container>
