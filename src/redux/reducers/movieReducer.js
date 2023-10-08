@@ -26,8 +26,12 @@ function movieReducer(state = initialState, action) {
     case "GET_MOVIES_FAILURE":
       return { ...state, loading: false };
     case "GET_MOVIE_DETAIL_SUCCESS":
-      // console.log("payload:", payload);
-      return { ...state, selectedMovie: payload };
+      console.log("payload:", payload);
+      return {
+        ...state,
+        selectedMovie: payload.selectedMovie,
+        genreList: payload.genreList,
+      };
     default:
       return { ...state };
   }

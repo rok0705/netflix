@@ -11,8 +11,21 @@ const MovieDetail = () => {
   let { id } = useParams();
 
   useEffect(() => {
+    console.log("useEffect call!");
     dispatch(movieAction.getMovieDetail(id));
   }, []);
+
+  function searchGenreName(id) {
+    console.log("item.id:", id, genreList);
+    var i = 0;
+    for (i = 0; i < genreList.length; i++) {
+      console.log("i:", i);
+      console.log("genreList[i].id:", genreList[i].id);
+      if (genreList[i].id == id) {
+        return genreList[i].name;
+      }
+    }
+  }
 
   return (
     <div className="movieDetailBg">
@@ -38,7 +51,8 @@ const MovieDetail = () => {
                     bg="danger"
                     style={{ marginRight: "1.5em" }}
                   >
-                    {genreList.find((genre) => genre.id == item.id).name}
+                    {searchGenreName(item.id)}
+                    {/* {genreList?.find((genre) => genre.id == item.id).name} */}
                   </Badge>
                 ))}
               </Col>

@@ -54,11 +54,24 @@ function getMovieDetail(id) {
       `/movie/${id}?api_key=${API_KEY}&language=en-US&page=1`
     );
 
-    let movieDetail = await movieDetailApi;
+    const genreListApi = api.get(
+      `/genre/movie/list?api_key=${API_KEY}&language=en-US&page=1`
+    );
 
-    dispatch({ type: "GET_MOVIE_DETAIL_SUCCESS", payload: movieDetail.data });
+    let [movieDetail, genreList] = await Promise.all([
+      movieDetailApi,
+      genreListApi,
+    ]);
 
-    console.log("movieDetail:", movieDetail);
+    dispatch({
+      type: "GET_MOVIE_DETAIL_SUCCESS",
+      payload: {
+        selectedMovie: movieDetail.data,
+        genreList: genreList.data.genres,
+      },
+    });
+
+    console.log("getMovieDetail middleware:", movieDetail);
   };
 }
 
