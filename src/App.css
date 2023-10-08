@@ -186,7 +186,7 @@
   justify-content: center;
   background-color: black;
   font-family:Helvetica;
-  font-size: 18px;
+  font-size: 16px;
 
 }
 
@@ -195,7 +195,7 @@
   justify-content: center;
   background-color: black;
   font-family: 'Helvetica';
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .reviewBox {
@@ -223,3 +223,8 @@
   width: 100%;
   text-wrap: nowrap;
 }
+
+.related-movie-card-row {
+  padding-bottom: 20px;
+}
+

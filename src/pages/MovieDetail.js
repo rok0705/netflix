@@ -7,17 +7,19 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import ModalVideo from "react-modal-video";
-import ReviewCard from "./../components/ReviewCard";
+import ReviewCards from "../components/ReviewCards";
 import { useLocation } from "react-router-dom";
+import RelatedMovies from "./../components/RelatedMovies";
 
 const MovieDetail = () => {
   const dispatch = useDispatch();
-  const { selectedMovie, genreList, movieReviews } = useSelector(
+  const { selectedMovie, genreList, movieReviews, relatedMovies } = useSelector(
     (state) => state.movie
   );
   const [isOpen, setOpen] = useState(false);
   const [isVideoId, setVideoId] = useState("");
   const { pathname } = useLocation();
+  const [reviewClicked, setReviewClicked] = useState(true);
 
   let { id } = useParams();
 
@@ -200,24 +202,38 @@ const MovieDetail = () => {
         <Row>
           <Row className="reviewButtons">
             <Col xs={2}>
-              <Button variant="light" className="review-button">
+              <Button
+                variant="light"
+                className="review-button"
+                onClick={() => setReviewClicked(true)}
+              >
                 REVIEWS {"("}
                 {movieReviews.length}
                 {")"}
               </Button>
             </Col>
             <Col xs={2}>
-              <Button variant="danger" className="related-movies-button">
-                RELATED MOVIES
+              <Button
+                variant="danger"
+                className="related-movies-button"
+                onClick={() => setReviewClicked(false)}
+              >
+                RELATED MOVIES {"("}
+                {relatedMovies.length}
+                {")"}
               </Button>
             </Col>
             <Col xs={8}></Col>
           </Row>
-          <Row className="review-boxBorder">
-            {movieReviews &&
-              movieReviews.map((review) => (
-                <ReviewCard data={review}></ReviewCard>
-              ))}
+          <Row>
+            {movieReviews && reviewClicked && (
+              <ReviewCards data={movieReviews}></ReviewCards>
+            )}
+          </Row>
+          <Row>
+            {relatedMovies && !reviewClicked && (
+              <RelatedMovies data={relatedMovies}></RelatedMovies>
+            )}
           </Row>
         </Row>
       </Container>

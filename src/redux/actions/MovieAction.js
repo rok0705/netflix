@@ -62,11 +62,19 @@ function getMovieDetail(id) {
       `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
     );
 
-    let [movieDetail, genreList, movieReviews] = await Promise.all([
-      movieDetailApi,
-      genreListApi,
-      movieReviewApi,
-    ]);
+    const relatedMovieApi = api.get(
+      `/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    let [movieDetail, genreList, movieReviews, relatedMovies] =
+      await Promise.all([
+        movieDetailApi,
+        genreListApi,
+        movieReviewApi,
+        relatedMovieApi,
+      ]);
+
+    console.log("relatemovies:", relatedMovies);
 
     dispatch({
       type: "GET_MOVIE_DETAIL_SUCCESS",
@@ -74,6 +82,7 @@ function getMovieDetail(id) {
         selectedMovie: movieDetail.data,
         genreList: genreList.data.genres,
         movieReviews: movieReviews.data.results,
+        relatedMovies: relatedMovies.data.results,
       },
     });
 
