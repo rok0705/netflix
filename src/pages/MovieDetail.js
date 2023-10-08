@@ -188,11 +188,31 @@ const MovieDetail = () => {
                   onClose={() => setOpen(false)}
                 />
               </Col> */}
+              <Col xs={2}>
+                <Button variant="link" className="detailpage-trailer">
+                  Watch Trailer
+                </Button>
+              </Col>
+              <Col xs={10}></Col>
             </Row>
           </Col>
         </Row>
         <Row>
-          <Row className="reviewButtons">review buttons</Row>
+          <Row className="reviewButtons">
+            <Col xs={2}>
+              <Button variant="light" className="review-button">
+                REVIEWS {"("}
+                {movieReviews.length}
+                {")"}
+              </Button>
+            </Col>
+            <Col xs={2}>
+              <Button variant="danger" className="related-movies-button">
+                RELATED MOVIES
+              </Button>
+            </Col>
+            <Col xs={8}></Col>
+          </Row>
           <Row className="review-boxBorder">
             {movieReviews &&
               movieReviews.map((review) => (

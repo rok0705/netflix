@@ -168,7 +168,8 @@
 }
 
 .detailpage-trailer {
-  width:20px
+  color: red;
+  font-size: 5px;
 }
 
 .card-bg {
@@ -185,6 +186,8 @@
   justify-content: center;
   background-color: black;
   font-family:Helvetica;
+  font-size: 18px;
+
 }
 
 .card-text {
@@ -192,6 +195,7 @@
   justify-content: center;
   background-color: black;
   font-family: 'Helvetica';
+  font-size: 18px;
 }
 
 .reviewBox {
@@ -200,9 +204,22 @@
 
 .reviewButtons {
   padding-top: 100px;
+  padding-bottom: 15px;
 }
 
 .review-boxBorder {
   border: 2px solid white;
-  padding: 40px;
+  padding: 30px;
+}
+
+.review-button {
+  font-size: 10px;
+  width: 100%;
+  text-wrap: nowrap;
+}
+
+.related-movies-button {
+  font-size: 10px;
+  width: 100%;
+  text-wrap: nowrap;
 }
