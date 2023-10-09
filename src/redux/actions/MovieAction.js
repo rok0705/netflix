@@ -32,6 +32,12 @@ function getMovies() {
           genreListApi,
         ]);
 
+      // console.log(
+      //   "toprated, upcomingMovies at middleware:",
+      //   topRatedMovies.data,
+      //   upcomingMovies.data
+      // );
+
       dispatch({
         type: "GET_MOVIES_SUCCESS",
         payload: {
@@ -96,4 +102,33 @@ function getMovieDetail(id) {
   };
 }
 
-export const movieAction = { getMovies, getMovieDetail };
+function reversePopular(popularMovies) {
+  return (dispatch) => {
+    console.log("At middleware:", popularMovies);
+    dispatch({
+      type: "REVERSE_POPULAR",
+      payload: {
+        popularMovies: popularMovies,
+      },
+    });
+  };
+}
+
+function reverseToprated(topRatedMovies) {
+  return (dispatch) => {
+    console.log("At middleware:", topRatedMovies);
+    dispatch({
+      type: "REVERSE_TOPRATED",
+      payload: {
+        topRatedMovies: topRatedMovies,
+      },
+    });
+  };
+}
+
+export const movieAction = {
+  getMovies,
+  getMovieDetail,
+  reversePopular,
+  reverseToprated,
+};

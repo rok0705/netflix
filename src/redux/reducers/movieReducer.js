@@ -37,6 +37,12 @@ function movieReducer(state = initialState, action) {
         relatedMovies: payload.relatedMovies,
         trailerId: payload.trailerId,
       };
+    case "REVERSE_POPULAR":
+      console.log("At reducer popularMovies:", payload.popularMovies);
+      return { ...state, popularMovies: payload.popularMovies };
+    case "REVERSE_TOPRATED":
+      console.log("At reducer toprated:", payload.topRatedMovies);
+      return { ...state, topRatedMovies: payload.topRatedMovies };
     default:
       return { ...state };
   }

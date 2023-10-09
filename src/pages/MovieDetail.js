@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "../redux/actions/MovieAction";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
-import ReactDOM from "react-dom";
-import ModalVideo from "react-modal-video";
 import ReviewCards from "../components/ReviewCards";
 import { useLocation } from "react-router-dom";
 import RelatedMovies from "./../components/RelatedMovies";

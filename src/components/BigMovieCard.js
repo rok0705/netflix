@@ -25,7 +25,7 @@ const BigMovieCard = ({ movie }) => {
     } else {
       return text;
     }
-    console.log("truncateOverview:", truncated);
+    // console.log("truncateOverview:", truncated);
     return truncated;
   }
 
