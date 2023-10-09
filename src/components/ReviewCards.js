@@ -2,12 +2,12 @@ import React from "react";
 import ReviewCard from "./ReviewCard";
 
 const ReviewCards = ({ data }) => {
-  console.log("reviewcards:", data);
+  // console.log("reviewcards:", data);
 
   return (
     <div className="review-boxBorder">
-      {data.map((review) => (
-        <ReviewCard data={review}></ReviewCard>
+      {data.map((review, index) => (
+        <ReviewCard data={review} key={index}></ReviewCard>
       ))}
     </div>
   );

@@ -28,6 +28,11 @@
   background:linear-gradient(to top, #141413, transparent);
 }
 
+.close-button {
+  justify-content: end;
+  display: flex;
+}
+
 .banner-info {
   width:40%;
   margin-left: 3%;
@@ -47,7 +52,7 @@
 }
 
 .card {
-  width:300px;
+  width:350px;
   height:200px;
 }
 
@@ -87,6 +92,7 @@
 
 .detailContainer {
   justify-content: center;
+  display: flex;
 }
 
 .movie-image {

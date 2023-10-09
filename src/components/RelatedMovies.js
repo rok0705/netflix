@@ -7,7 +7,7 @@ const RelatedMovies = ({ data }) => {
     <div>
       <Row xs={2}>
         {data.map((movie) => (
-          <Col>
+          <Col className="detailContainer">
             <MovieCard item={movie}></MovieCard>
             <div className="related-movie-card-row"></div>
           </Col>

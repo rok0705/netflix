@@ -4,22 +4,26 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "../redux/actions/MovieAction";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import ModalVideo from "react-modal-video";
 import ReviewCards from "../components/ReviewCards";
 import { useLocation } from "react-router-dom";
 import RelatedMovies from "./../components/RelatedMovies";
+import YouTube from "react-youtube";
 
 const MovieDetail = () => {
+  const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
+
   const dispatch = useDispatch();
-  const { selectedMovie, genreList, movieReviews, relatedMovies } = useSelector(
-    (state) => state.movie
-  );
+  const { selectedMovie, genreList, movieReviews, relatedMovies, trailerId } =
+    useSelector((state) => state.movie);
   const [isOpen, setOpen] = useState(false);
   const [isVideoId, setVideoId] = useState("");
   const { pathname } = useLocation();
   const [reviewClicked, setReviewClicked] = useState(true);
+  const [modalShow, setModalShow] = React.useState(false);
+  const [fullscreen, setFullscreen] = useState(true);
 
   let { id } = useParams();
 
@@ -27,6 +31,7 @@ const MovieDetail = () => {
     console.log("useEffect call!");
     window.scrollTo(0, 0);
     dispatch(movieAction.getMovieDetail(id));
+    //getVideoId();
   }, [id]);
 
   function searchGenreName(id) {
@@ -38,7 +43,7 @@ const MovieDetail = () => {
     }
   }
 
-  const openTrailer = async () => {
+  const getVideoId = async () => {
     setOpen(true);
     const keyword = selectedMovie?.title;
     const API_KEY = "AIzaSyDB8_rpqqkMjDutxRNwTErD3Mp5IpjG0k4";
@@ -50,13 +55,47 @@ const MovieDetail = () => {
       "No video found with given keyword";
     setVideoId(videoId);
     console.log("isVideoId:", isVideoId);
-    //window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
   };
 
-  //openTrailer();
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
+
+  function MyVerticallyCenteredModal(props) {
+    const opts = {
+      height: "680",
+      width: "1150",
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1,
+      },
+    };
+
+    const onPlayerReady = (event) => {};
+
+    console.log("fullscreen:", fullscreen);
+    return (
+      <Modal
+        {...props}
+        size="xl"
+        centered
+        // fullscreen="xl-down"
+        // aria-labelledby="contained-modal-title-vcenter"
+      >
+        <YouTube videoId={trailerId} opts={opts} onReady={onPlayerReady} />
+        <div className="close-button">
+          <Button variant="danger" onClick={props.onHide}>
+            Close
+          </Button>
+        </div>
+      </Modal>
+    );
+  }
+
+  const startYoutube = (breakpoint) => {
+    setModalShow(true);
+    setFullscreen(breakpoint);
+  };
 
   return (
     <div className="movieDetailBg">
@@ -190,10 +229,21 @@ const MovieDetail = () => {
                   onClose={() => setOpen(false)}
                 />
               </Col> */}
+
               <Col xs={2}>
-                <Button variant="link" className="detailpage-trailer">
+                <Button
+                  variant="link"
+                  className="detailpage-trailer"
+                  onClick={() => startYoutube("xl-down")}
+                >
                   Watch Trailer
+                  {/* {typeof v === "string" && `below ${v.split("_")[0]}`} */}
                 </Button>
+
+                <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
               </Col>
               <Col xs={10}></Col>
             </Row>
