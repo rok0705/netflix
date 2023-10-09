@@ -83,11 +83,11 @@ const MovieDetail = () => {
         // aria-labelledby="contained-modal-title-vcenter"
       >
         <YouTube videoId={trailerId} opts={opts} onReady={onPlayerReady} />
-        <div className="close-button">
+        {/* <div className="close-button">
           <Button variant="danger" onClick={props.onHide}>
             Close
           </Button>
-        </div>
+        </div> */}
       </Modal>
     );
   }
