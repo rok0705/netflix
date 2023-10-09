@@ -28,6 +28,21 @@
   background:linear-gradient(to top, #141413, transparent);
 }
 
+.bigCard {
+  width:300px;
+  height:500px;
+  display: flex;
+  border-radius: 13px;
+}
+
+.bigCard::before {
+  position: absolute;
+  width:300px;
+  height:500px;  
+  content:'';
+  background-image:linear-gradient(to top, black, transparent);
+}
+
 .close-button {
   justify-content: end;
   display: flex;
@@ -56,6 +71,7 @@
   height:200px;
 }
 
+
 .movieSectionBg {
   background-color: #141413;
 }
@@ -67,6 +83,10 @@
 .movieSectionHeading {
   color: white;
   font-size: 25px;
+}
+
+.movieFirstRow {
+  padding-top:20px;
 }
 
 .overlay {
@@ -83,6 +103,7 @@
 
 .movieTitle {
   font-size: 20px;
+  width: 200px;
 }
 
 .movieDetailBg {
@@ -97,6 +118,17 @@
 
 .movie-image {
   display: flex;
+}
+
+.movieTitle {
+  color: white;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.movieReleasedate {
+  color: white;
+
 }
 
 .detailpage-genres {
