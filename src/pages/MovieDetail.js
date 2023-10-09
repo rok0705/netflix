@@ -27,7 +27,7 @@ const MovieDetail = () => {
     console.log("useEffect call!");
     window.scrollTo(0, 0);
     dispatch(movieAction.getMovieDetail(id));
-  }, []);
+  }, [id]);
 
   function searchGenreName(id) {
     var i = 0;
