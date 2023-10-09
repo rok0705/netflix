@@ -10,13 +10,11 @@ const BigMovieCards = ({ data }) => {
   return (
     <div>
       <Container>
-        <Row xs={2}>
-          {data &&
-            data.results?.map((movie, index) => (
+        <Row xs={2} className="movieCols">
+          {data.results &&
+            data.results.map((movie, index) => (
               <Col>
-                <BigMovieCard key={index} movie={movie}>
-                  1
-                </BigMovieCard>
+                <BigMovieCard key={index} movie={movie}></BigMovieCard>
               </Col>
             ))}
         </Row>

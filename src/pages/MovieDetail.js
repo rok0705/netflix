@@ -212,24 +212,6 @@ const MovieDetail = () => {
             </Row>
             <hr className="detailpage-line"></hr>
             <Row className="detailpage-whiteText">
-              {/* <Col xs={3}> */}
-              {/* <Button onClick={openTrailer} variant="danger">
-                  Watch Trailer
-                </Button> */}
-              {/* <Button variant="danger" onClick={() => openTrailer()}>
-                  Watch Trailer
-                </Button>
-              </Col>
-              <Col xs={9}>
-                <ModalVideo
-                  channel="youtube"
-                  youtube={{ mute: 0, autoplay: 1 }}
-                  isOpen={isOpen}
-                  videoId={isVideoId}
-                  onClose={() => setOpen(false)}
-                />
-              </Col> */}
-
               <Col xs={2}>
                 <Button
                   variant="link"

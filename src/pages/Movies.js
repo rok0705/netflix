@@ -17,11 +17,11 @@ const Movies = () => {
     <div className="movieDetailBg">
       <Container>
         <Row>
-          <Col xs={4}>
+          <Col xs={3}>
             <Row>SortBox</Row>
             <Row>FilterBox</Row>
           </Col>
-          <Col xs={8}>
+          <Col xs={9} className="movieDetailSubBg">
             <BigMovieCards data={popularMovies}></BigMovieCards>
           </Col>
         </Row>
