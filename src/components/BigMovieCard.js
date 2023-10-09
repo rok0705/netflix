@@ -19,6 +19,16 @@ const BigMovieCard = ({ movie }) => {
   //     console.log("genreList:", genreList, movie?.genre_ids);
   //   }, [genreList]);
 
+  function truncateOverview(text) {
+    if (text.length > 200) {
+      var truncated = text.substring(0, 200) + "...";
+    } else {
+      return text;
+    }
+    console.log("truncateOverview:", truncated);
+    return truncated;
+  }
+
   return (
     <div
       className="bigCard"
@@ -42,7 +52,7 @@ const BigMovieCard = ({ movie }) => {
               ></img>
             </Col>
             <Col xs={8}>
-              <Row className="movieTitle">{movie.title}</Row>
+              <Row className="movieTitle2">{movie.title}</Row>
               <Row className="movieReleasedate">
                 {movie.release_date.split("-")[0]}
               </Row>
@@ -62,7 +72,9 @@ const BigMovieCard = ({ movie }) => {
               ))}
             </Col>
           </Row>
-          <Row className="movieOverview">{movie.overview}</Row>
+          <Row className="movieOverview">
+            {truncateOverview(movie.overview)}
+          </Row>
           <Row className="detailpage-imdbline">
             <Col xs={2}>
               <img

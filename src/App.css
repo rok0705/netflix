@@ -29,6 +29,7 @@
 }
 
 .bigCard {
+  z-index:1;
   /* width:300px; */
   height:650px;
   display: flex;
@@ -38,11 +39,13 @@
 }
 
 .bigCard::before {
+  z-index:1;
+
   position: absolute;
   width:450px;
   height:650px;
   content:'';
-  /* background-image:linear-gradient(to top, black, transparent); */
+  background-image:linear-gradient(to top, black, transparent);
 }
 
 .movieCols {
@@ -109,9 +112,11 @@
   opacity: 1;
 }
 
-.movieTitle {
-  font-size: 30px;
+.movieTitle2 {
+  font-size: 32px;
   width: 280px;
+  z-index: 2;
+  color:red;
 }
 
 .movieDetailBg {
@@ -125,10 +130,13 @@
 }
 
 .movieOverview {
+  z-index : 2;
   width: 250px;
+  height: 200px;
   color:white;
   font-size: 18px;
   padding-bottom: 30px;
+
 }
 
 .detailContainer {
