@@ -1,5 +1,5 @@
 
-Using React, Redux, Redux thunk, React bootstrap, Redux dev tool, TMDB API
+Using React, Redux, Redux thunk, React bootstrap, Redux dev tool, TMDB API, react-youtube
 
 https://netflix-five-alpha.vercel.app/
 
