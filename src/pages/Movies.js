@@ -30,6 +30,9 @@ const Movies = () => {
       dispatch(movieAction.reversePopular(popularMovies));
       setObjectMovies(popularMovies);
       setPopularDescending(!isPopularDescending);
+    } else if (!descendingRequest && !isPopularDescending) {
+      dispatch(movieAction.reversePopular(popularMovies));
+      setObjectMovies(popularMovies);
     } else {
       popularMovies.results.reverse();
       dispatch(movieAction.reversePopular(popularMovies));
@@ -47,6 +50,9 @@ const Movies = () => {
       dispatch(movieAction.reverseToprated(topRatedMovies));
       setObjectMovies(topRatedMovies);
       setTopratedDescending(!isTopratedDescending);
+    } else if (!descendingRequest && !isTopratedDescending) {
+      dispatch(movieAction.reverseToprated(topRatedMovies));
+      setObjectMovies(topRatedMovies);
     } else {
       topRatedMovies.results.reverse();
       dispatch(movieAction.reverseToprated(topRatedMovies));
