@@ -8,6 +8,7 @@ let initialState = {
   movieReviews: [],
   relatedMovies: [],
   trailerId: "",
+  updatedMovies: {},
 };
 
 function movieReducer(state = initialState, action) {
@@ -45,6 +46,9 @@ function movieReducer(state = initialState, action) {
       return { ...state, topRatedMovies: payload.topRatedMovies };
     case "REVERSE_UPCOMING":
       return { ...state, upcomingMovies: payload.upcomingMovies };
+    case "UPDATE_MOVIES":
+      // console.log("At reducer, updatedMovies:", payload);
+      return { ...state, updatedMovies: payload.updatedMovies };
     default:
       return { ...state };
   }

@@ -32,11 +32,7 @@ function getMovies() {
           genreListApi,
         ]);
 
-      // console.log(
-      //   "toprated, upcomingMovies at middleware:",
-      //   topRatedMovies.data,
-      //   upcomingMovies.data
-      // );
+      // console.log("At middleware, getMovies");
 
       dispatch({
         type: "GET_MOVIES_SUCCESS",
@@ -137,10 +133,23 @@ function reverseUpcoming(upcomingMovies) {
   };
 }
 
+function updatedMovies(originalMovies) {
+  return (dispatch) => {
+    // console.log("middleware, updatedMovies:", originalMovies);
+    dispatch({
+      type: "UPDATE_MOVIES",
+      payload: {
+        updatedMovies: originalMovies,
+      },
+    });
+  };
+}
+
 export const movieAction = {
   getMovies,
   getMovieDetail,
   reversePopular,
   reverseToprated,
   reverseUpcoming,
+  updatedMovies,
 };

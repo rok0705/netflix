@@ -16,8 +16,9 @@ const Movies = () => {
   const [objectMovies, setObjectMovies] = useState("");
   const [backupMovies, setBackupMovies] = useState("");
   const [sortBy, setSortBy] = useState("Sort by:");
-  const [minValue, setMinValue] = useState("1980");
+  const [minValue, setMinValue] = useState("1960");
   const [maxValue, setMaxValue] = useState("2023");
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     dispatch(movieAction.getMovies());
@@ -28,90 +29,64 @@ const Movies = () => {
   }, [popularMovies]);
 
   useEffect(() => {
-    if (!backupMovies) {
-      let backup = Object.assign({}, objectMovies);
-      setBackupMovies(backup);
-      console.log("backing up initial:", backup);
-    } else {
-      // restore objectMovies
-      console.log("restored objectMovies:", objectMovies);
-    }
-  }, [objectMovies]);
-
-  useEffect(() => {
-    console.log("33backupMovies:", backupMovies);
-  }, [backupMovies]);
+    console.log("flag:", flag);
+  }, [flag]);
 
   const sortPopularMoviesByDesc = (descendingRequest) => {
     if (descendingRequest && isPopularDescending) {
-      dispatch(movieAction.reversePopular(popularMovies));
-      setObjectMovies(popularMovies);
       setSortBy("Popularity (Descending)");
     } else if (descendingRequest && !isPopularDescending) {
       popularMovies.results.reverse();
-      dispatch(movieAction.reversePopular(popularMovies));
-      setObjectMovies(popularMovies);
       setPopularDescending(!isPopularDescending);
       setSortBy("Popularity (Descending)");
     } else if (!descendingRequest && !isPopularDescending) {
-      dispatch(movieAction.reversePopular(popularMovies));
-      setObjectMovies(popularMovies);
       setSortBy("Popularity (Ascending)");
     } else {
       popularMovies.results.reverse();
-      dispatch(movieAction.reversePopular(popularMovies));
       setPopularDescending(!isPopularDescending);
-      setObjectMovies(popularMovies);
       setSortBy("Popularity (Ascending)");
     }
+    dispatch(movieAction.reversePopular(popularMovies));
+    setObjectMovies(popularMovies);
+    setFlag(!flag);
   };
 
   const sortTopRatedMoviesByDesc = (descendingRequest) => {
     if (descendingRequest && isTopratedDescending) {
-      dispatch(movieAction.reverseToprated(topRatedMovies));
-      setObjectMovies(topRatedMovies);
       setSortBy("Top Rated (Descending)");
     } else if (descendingRequest && !isTopratedDescending) {
       topRatedMovies.results.reverse();
-      dispatch(movieAction.reverseToprated(topRatedMovies));
-      setObjectMovies(topRatedMovies);
       setTopratedDescending(!isTopratedDescending);
       setSortBy("Top Rated (Descending)");
     } else if (!descendingRequest && !isTopratedDescending) {
-      dispatch(movieAction.reverseToprated(topRatedMovies));
-      setObjectMovies(topRatedMovies);
       setSortBy("Top Rated (Ascending)");
     } else {
       topRatedMovies.results.reverse();
-      dispatch(movieAction.reverseToprated(topRatedMovies));
       setTopratedDescending(!isTopratedDescending);
-      setObjectMovies(topRatedMovies);
       setSortBy("Top Rated (Ascending)");
     }
+    dispatch(movieAction.reverseToprated(topRatedMovies));
+    setObjectMovies(topRatedMovies);
+    setFlag(!flag);
   };
 
   const sortUpcomingMoviesByDesc = (descendingRequest) => {
     if (descendingRequest && isUpcomingDescending) {
-      dispatch(movieAction.reverseUpcoming(upcomingMovies));
-      setObjectMovies(upcomingMovies);
       setSortBy("Upcoming (Descending)");
     } else if (descendingRequest && !isUpcomingDescending) {
       upcomingMovies.results.reverse();
-      dispatch(movieAction.reverseUpcoming(upcomingMovies));
-      setObjectMovies(upcomingMovies);
       setUpcomingDescending(!isUpcomingDescending);
       setSortBy("Upcoming (Descending)");
     } else if (!descendingRequest && !isUpcomingDescending) {
-      dispatch(movieAction.reverseUpcoming(upcomingMovies));
-      setObjectMovies(upcomingMovies);
       setSortBy("Upcoming (Ascending)");
     } else {
       upcomingMovies.results.reverse();
-      dispatch(movieAction.reverseUpcoming(upcomingMovies));
       setUpcomingDescending(!isUpcomingDescending);
-      setObjectMovies(upcomingMovies);
       setSortBy("Upcoming (Ascending)");
     }
+    dispatch(movieAction.reverseUpcoming(upcomingMovies));
+    setObjectMovies(upcomingMovies);
+    setFlag(!flag);
   };
 
   function filterByYear(movie) {
@@ -125,22 +100,6 @@ const Movies = () => {
     setMinValue(e.minValue);
     setMaxValue(e.maxValue);
   };
-
-  useEffect(() => {
-    if (!objectMovies.results) return;
-    if (!backupMovies) return;
-    // restore objectMovies
-    console.log("useEffect()-backupMovies:", backupMovies);
-    setObjectMovies(backupMovies);
-
-    console.log("backupMovies, ObjectMovies:", backupMovies, objectMovies);
-    var filteredMovies = null;
-    filteredMovies = objectMovies.results.filter(filterByYear);
-    // console.log("filteredMovies:", filteredMovies);
-    objectMovies.results = filteredMovies;
-    console.log("objectMovies:", objectMovies);
-    setObjectMovies(objectMovies);
-  }, [minValue, maxValue]);
 
   return (
     <div className="movieDetailBg">
@@ -203,7 +162,7 @@ const Movies = () => {
                 </div>
               </Row>
               <MultiRangeSlider
-                min={1980}
+                min={1960}
                 max={2023}
                 step={1}
                 ruler={false}
@@ -213,14 +172,22 @@ const Movies = () => {
                 thumbRightColor="red"
                 minValue={minValue}
                 maxValue={maxValue}
-                onInput={(e) => {
+                onChange={(e) => {
                   handleInput(e);
                 }}
+                // onInput={(e) => {
+                //   handleInput(e);
+                // }}
               />
             </Row>
           </Col>
           <Col xs={9} className="movieDetailSubBg">
-            <BigMovieCards data={objectMovies}></BigMovieCards>
+            <BigMovieCards
+              data={objectMovies}
+              minValue={minValue}
+              maxValue={maxValue}
+              refresh={flag}
+            ></BigMovieCards>
           </Col>
         </Row>
       </Container>
