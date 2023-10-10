@@ -3,6 +3,7 @@ import { Row, Col, Container, Dropdown } from "react-bootstrap";
 import BigMovieCards from "./../components/BigMovieCards";
 import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "./../redux/actions/MovieAction";
+import MultiRangeSlider from "multi-range-slider-react";
 
 const Movies = () => {
   const { popularMovies, topRatedMovies, upcomingMovies, loading } =
@@ -13,7 +14,10 @@ const Movies = () => {
   const [isUpcomingDescending, setUpcomingDescending] = useState(true);
   const [refresh, setRefresh] = useState(false);
   const [objectMovies, setObjectMovies] = useState("");
+  const [backupMovies, setBackupMovies] = useState("");
   const [sortBy, setSortBy] = useState("Sort by:");
+  const [minValue, setMinValue] = useState("1980");
+  const [maxValue, setMaxValue] = useState("2023");
 
   useEffect(() => {
     dispatch(movieAction.getMovies());
@@ -22,6 +26,21 @@ const Movies = () => {
   useEffect(() => {
     setObjectMovies(popularMovies);
   }, [popularMovies]);
+
+  useEffect(() => {
+    if (!backupMovies) {
+      let backup = Object.assign({}, objectMovies);
+      setBackupMovies(backup);
+      console.log("backing up initial:", backup);
+    } else {
+      // restore objectMovies
+      console.log("restored objectMovies:", objectMovies);
+    }
+  }, [objectMovies]);
+
+  useEffect(() => {
+    console.log("33backupMovies:", backupMovies);
+  }, [backupMovies]);
 
   const sortPopularMoviesByDesc = (descendingRequest) => {
     if (descendingRequest && isPopularDescending) {
@@ -95,12 +114,40 @@ const Movies = () => {
     }
   };
 
+  function filterByYear(movie) {
+    let year = movie.release_date.split("-")[0];
+    if (year <= maxValue && year >= minValue) {
+      return movie;
+    }
+  }
+
+  const handleInput = (e) => {
+    setMinValue(e.minValue);
+    setMaxValue(e.maxValue);
+  };
+
+  useEffect(() => {
+    if (!objectMovies.results) return;
+    if (!backupMovies) return;
+    // restore objectMovies
+    console.log("useEffect()-backupMovies:", backupMovies);
+    setObjectMovies(backupMovies);
+
+    console.log("backupMovies, ObjectMovies:", backupMovies, objectMovies);
+    var filteredMovies = null;
+    filteredMovies = objectMovies.results.filter(filterByYear);
+    // console.log("filteredMovies:", filteredMovies);
+    objectMovies.results = filteredMovies;
+    console.log("objectMovies:", objectMovies);
+    setObjectMovies(objectMovies);
+  }, [minValue, maxValue]);
+
   return (
     <div className="movieDetailBg">
       <Container>
         <Row>
           <Col xs={3}>
-            <Row>
+            <Row className="SortByRow">
               <Dropdown>
                 <Dropdown.Toggle variant="danger" id="dropdown-basic">
                   {sortBy}
@@ -146,7 +193,31 @@ const Movies = () => {
                 </Dropdown.Menu>
               </Dropdown>
             </Row>
-            <Row>FilterBox</Row>
+            <Row className="filter-container">
+              <Row className="sortType">
+                <div>YEAR Filter</div>
+              </Row>
+              <Row className="filterType">
+                <div>
+                  From:{minValue} - To:{maxValue}
+                </div>
+              </Row>
+              <MultiRangeSlider
+                min={1980}
+                max={2023}
+                step={1}
+                ruler={false}
+                label={false}
+                barInnerColor="red"
+                thumbLeftColor="red"
+                thumbRightColor="red"
+                minValue={minValue}
+                maxValue={maxValue}
+                onInput={(e) => {
+                  handleInput(e);
+                }}
+              />
+            </Row>
           </Col>
           <Col xs={9} className="movieDetailSubBg">
             <BigMovieCards data={objectMovies}></BigMovieCards>

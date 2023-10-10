@@ -77,9 +77,19 @@
   /* font-family: "Netflix Sans" */
 }
 
+.SortByRow {
+  padding-bottom: 20px;
+}
+
 .sortType {
   color: white;
   font-size: 20px;
+}
+
+.filterType {
+  color: white;
+  font-size: 25px;
+  padding-bottom: 30px;
 }
 
 .card {
@@ -87,6 +97,9 @@
   height:200px;
 }
 
+.filter-container {
+  justify-content: center;
+}
 
 .movieSectionBg {
   background-color: #141413;

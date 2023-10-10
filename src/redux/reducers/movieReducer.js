@@ -28,7 +28,7 @@ function movieReducer(state = initialState, action) {
     case "GET_MOVIES_FAILURE":
       return { ...state, loading: false };
     case "GET_MOVIE_DETAIL_SUCCESS":
-      console.log("payload:", payload);
+      // console.log("payload:", payload);
       return {
         ...state,
         selectedMovie: payload.selectedMovie,
@@ -38,10 +38,10 @@ function movieReducer(state = initialState, action) {
         trailerId: payload.trailerId,
       };
     case "REVERSE_POPULAR":
-      console.log("At reducer popularMovies:", payload.popularMovies);
+      // console.log("At reducer popularMovies:", payload.popularMovies);
       return { ...state, popularMovies: payload.popularMovies };
     case "REVERSE_TOPRATED":
-      console.log("At reducer toprated:", payload.topRatedMovies);
+      // console.log("At reducer toprated:", payload.topRatedMovies);
       return { ...state, topRatedMovies: payload.topRatedMovies };
     case "REVERSE_UPCOMING":
       return { ...state, upcomingMovies: payload.upcomingMovies };

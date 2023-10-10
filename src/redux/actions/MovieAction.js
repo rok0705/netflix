@@ -85,7 +85,7 @@ function getMovieDetail(id) {
         trailerApi,
       ]);
 
-    console.log("trailerId:", trailerId);
+    // console.log("trailerId:", trailerId);
 
     dispatch({
       type: "GET_MOVIE_DETAIL_SUCCESS",
@@ -104,7 +104,7 @@ function getMovieDetail(id) {
 
 function reversePopular(popularMovies) {
   return (dispatch) => {
-    console.log("At middleware:", popularMovies);
+    // console.log("At middleware:", popularMovies);
     dispatch({
       type: "REVERSE_POPULAR",
       payload: {
@@ -116,7 +116,7 @@ function reversePopular(popularMovies) {
 
 function reverseToprated(topRatedMovies) {
   return (dispatch) => {
-    console.log("At middleware:", topRatedMovies);
+    // console.log("At middleware:", topRatedMovies);
     dispatch({
       type: "REVERSE_TOPRATED",
       payload: {
