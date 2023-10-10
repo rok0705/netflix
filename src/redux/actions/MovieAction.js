@@ -126,9 +126,21 @@ function reverseToprated(topRatedMovies) {
   };
 }
 
+function reverseUpcoming(upcomingMovies) {
+  return (dispatch) => {
+    dispatch({
+      type: "REVERSE_UPCOMING",
+      payload: {
+        upcomingMovies: upcomingMovies,
+      },
+    });
+  };
+}
+
 export const movieAction = {
   getMovies,
   getMovieDetail,
   reversePopular,
   reverseToprated,
+  reverseUpcoming,
 };

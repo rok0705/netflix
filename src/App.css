@@ -77,6 +77,11 @@
   /* font-family: "Netflix Sans" */
 }
 
+.sortType {
+  color: white;
+  font-size: 20px;
+}
+
 .card {
   width:350px;
   height:200px;

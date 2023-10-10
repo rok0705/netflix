@@ -43,6 +43,8 @@ function movieReducer(state = initialState, action) {
     case "REVERSE_TOPRATED":
       console.log("At reducer toprated:", payload.topRatedMovies);
       return { ...state, topRatedMovies: payload.topRatedMovies };
+    case "REVERSE_UPCOMING":
+      return { ...state, upcomingMovies: payload.upcomingMovies };
     default:
       return { ...state };
   }

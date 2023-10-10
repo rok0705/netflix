@@ -10,8 +10,10 @@ const Movies = () => {
   const dispatch = useDispatch();
   const [isPopularDescending, setPopularDescending] = useState(true);
   const [isTopratedDescending, setTopratedDescending] = useState(true);
+  const [isUpcomingDescending, setUpcomingDescending] = useState(true);
   const [refresh, setRefresh] = useState(false);
   const [objectMovies, setObjectMovies] = useState("");
+  const [sortBy, setSortBy] = useState("Sort by:");
 
   useEffect(() => {
     dispatch(movieAction.getMovies());
@@ -25,19 +27,23 @@ const Movies = () => {
     if (descendingRequest && isPopularDescending) {
       dispatch(movieAction.reversePopular(popularMovies));
       setObjectMovies(popularMovies);
+      setSortBy("Popularity (Descending)");
     } else if (descendingRequest && !isPopularDescending) {
       popularMovies.results.reverse();
       dispatch(movieAction.reversePopular(popularMovies));
       setObjectMovies(popularMovies);
       setPopularDescending(!isPopularDescending);
+      setSortBy("Popularity (Descending)");
     } else if (!descendingRequest && !isPopularDescending) {
       dispatch(movieAction.reversePopular(popularMovies));
       setObjectMovies(popularMovies);
+      setSortBy("Popularity (Ascending)");
     } else {
       popularMovies.results.reverse();
       dispatch(movieAction.reversePopular(popularMovies));
       setPopularDescending(!isPopularDescending);
       setObjectMovies(popularMovies);
+      setSortBy("Popularity (Ascending)");
     }
   };
 
@@ -45,36 +51,49 @@ const Movies = () => {
     if (descendingRequest && isTopratedDescending) {
       dispatch(movieAction.reverseToprated(topRatedMovies));
       setObjectMovies(topRatedMovies);
+      setSortBy("Top Rated (Descending)");
     } else if (descendingRequest && !isTopratedDescending) {
       topRatedMovies.results.reverse();
       dispatch(movieAction.reverseToprated(topRatedMovies));
       setObjectMovies(topRatedMovies);
       setTopratedDescending(!isTopratedDescending);
+      setSortBy("Top Rated (Descending)");
     } else if (!descendingRequest && !isTopratedDescending) {
       dispatch(movieAction.reverseToprated(topRatedMovies));
       setObjectMovies(topRatedMovies);
+      setSortBy("Top Rated (Ascending)");
     } else {
       topRatedMovies.results.reverse();
       dispatch(movieAction.reverseToprated(topRatedMovies));
       setTopratedDescending(!isTopratedDescending);
       setObjectMovies(topRatedMovies);
+      setSortBy("Top Rated (Ascending)");
     }
   };
-  // const sortTopRatedMoviesByDesc = (descendingRequest) => {
-  //   if (descendingRequest && isTopratedDescending) {
-  //     console.log("topRatedMovies:", topRatedMovies);
-  //     dispatch(movieAction.reverseToprated(topRatedMovies));
-  //     setObjectMovies(topRatedMovies);
-  //   }
-  //   if (descendingRequest != isTopratedDescending) {
-  //     topRatedMovies.results.reverse();
-  //     console.log("topRatedMovies:", topRatedMovies);
-  //     dispatch(movieAction.reverseToprated(topRatedMovies));
-  //     setPopularDescending(!isTopratedDescending);
-  //   } else {
-  //     return;
-  //   }
-  // };
+
+  const sortUpcomingMoviesByDesc = (descendingRequest) => {
+    if (descendingRequest && isUpcomingDescending) {
+      dispatch(movieAction.reverseUpcoming(upcomingMovies));
+      setObjectMovies(upcomingMovies);
+      setSortBy("Upcoming (Descending)");
+    } else if (descendingRequest && !isUpcomingDescending) {
+      upcomingMovies.results.reverse();
+      dispatch(movieAction.reverseUpcoming(upcomingMovies));
+      setObjectMovies(upcomingMovies);
+      setUpcomingDescending(!isUpcomingDescending);
+      setSortBy("Upcoming (Descending)");
+    } else if (!descendingRequest && !isUpcomingDescending) {
+      dispatch(movieAction.reverseUpcoming(upcomingMovies));
+      setObjectMovies(upcomingMovies);
+      setSortBy("Upcoming (Ascending)");
+    } else {
+      upcomingMovies.results.reverse();
+      dispatch(movieAction.reverseUpcoming(upcomingMovies));
+      setUpcomingDescending(!isUpcomingDescending);
+      setObjectMovies(upcomingMovies);
+      setSortBy("Upcoming (Ascending)");
+    }
+  };
 
   return (
     <div className="movieDetailBg">
@@ -84,7 +103,7 @@ const Movies = () => {
             <Row>
               <Dropdown>
                 <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                  Sort Results By
+                  {sortBy}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -92,31 +111,37 @@ const Movies = () => {
                     href="#/action-1"
                     onClick={() => sortPopularMoviesByDesc(true)}
                   >
-                    Popularity(Descending)
+                    Popularity (Descending)
                   </Dropdown.Item>
                   <Dropdown.Item
                     href="#/action-2"
                     onClick={() => sortPopularMoviesByDesc(false)}
                   >
-                    Popularity(Ascending)
+                    Popularity (Ascending)
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Release date(Descending)
+                  <Dropdown.Item
+                    href="#/action-3"
+                    onClick={() => sortUpcomingMoviesByDesc(true)}
+                  >
+                    Upcoming (Descending)
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Release date(Ascending)
+                  <Dropdown.Item
+                    href="#/action-3"
+                    onClick={() => sortUpcomingMoviesByDesc(false)}
+                  >
+                    Upcoming (Ascending)
                   </Dropdown.Item>
                   <Dropdown.Item
                     href="#/action-3"
                     onClick={() => sortTopRatedMoviesByDesc(true)}
                   >
-                    Top Rated(Descending)
+                    Top Rated (Descending)
                   </Dropdown.Item>
                   <Dropdown.Item
                     href="#/action-3"
                     onClick={() => sortTopRatedMoviesByDesc(false)}
                   >
-                    Top Rated(Ascending)
+                    Top Rated (Ascending)
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
