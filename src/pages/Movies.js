@@ -11,32 +11,64 @@ const Movies = () => {
   const [isPopularDescending, setPopularDescending] = useState(true);
   const [isTopratedDescending, setTopratedDescending] = useState(true);
   const [refresh, setRefresh] = useState(false);
+  const [objectMovies, setObjectMovies] = useState("");
 
   useEffect(() => {
     dispatch(movieAction.getMovies());
   }, []);
 
+  useEffect(() => {
+    setObjectMovies(popularMovies);
+  }, [popularMovies]);
+
   const sortPopularMoviesByDesc = (descendingRequest) => {
-    if (descendingRequest != isPopularDescending) {
-      popularMovies.results.reverse();
-      console.log("popularMovies:", popularMovies);
+    if (descendingRequest && isPopularDescending) {
       dispatch(movieAction.reversePopular(popularMovies));
+      setObjectMovies(popularMovies);
+    } else if (descendingRequest && !isPopularDescending) {
+      popularMovies.results.reverse();
+      dispatch(movieAction.reversePopular(popularMovies));
+      setObjectMovies(popularMovies);
       setPopularDescending(!isPopularDescending);
     } else {
-      return;
+      popularMovies.results.reverse();
+      dispatch(movieAction.reversePopular(popularMovies));
+      setPopularDescending(!isPopularDescending);
+      setObjectMovies(popularMovies);
     }
   };
 
   const sortTopRatedMoviesByDesc = (descendingRequest) => {
-    if (descendingRequest != isTopratedDescending) {
-      topRatedMovies.results.reverse();
-      console.log("topRatedMovies:", topRatedMovies);
+    if (descendingRequest && isTopratedDescending) {
       dispatch(movieAction.reverseToprated(topRatedMovies));
-      setPopularDescending(!isTopratedDescending);
+      setObjectMovies(topRatedMovies);
+    } else if (descendingRequest && !isTopratedDescending) {
+      topRatedMovies.results.reverse();
+      dispatch(movieAction.reverseToprated(topRatedMovies));
+      setObjectMovies(topRatedMovies);
+      setTopratedDescending(!isTopratedDescending);
     } else {
-      return;
+      topRatedMovies.results.reverse();
+      dispatch(movieAction.reverseToprated(topRatedMovies));
+      setTopratedDescending(!isTopratedDescending);
+      setObjectMovies(topRatedMovies);
     }
   };
+  // const sortTopRatedMoviesByDesc = (descendingRequest) => {
+  //   if (descendingRequest && isTopratedDescending) {
+  //     console.log("topRatedMovies:", topRatedMovies);
+  //     dispatch(movieAction.reverseToprated(topRatedMovies));
+  //     setObjectMovies(topRatedMovies);
+  //   }
+  //   if (descendingRequest != isTopratedDescending) {
+  //     topRatedMovies.results.reverse();
+  //     console.log("topRatedMovies:", topRatedMovies);
+  //     dispatch(movieAction.reverseToprated(topRatedMovies));
+  //     setPopularDescending(!isTopratedDescending);
+  //   } else {
+  //     return;
+  //   }
+  // };
 
   return (
     <div className="movieDetailBg">
@@ -70,7 +102,7 @@ const Movies = () => {
                   </Dropdown.Item>
                   <Dropdown.Item
                     href="#/action-3"
-                    onClick={() => sortTopRatedMoviesByDesc(false)}
+                    onClick={() => sortTopRatedMoviesByDesc(true)}
                   >
                     Top Rated(Descending)
                   </Dropdown.Item>
@@ -86,7 +118,7 @@ const Movies = () => {
             <Row>FilterBox</Row>
           </Col>
           <Col xs={9} className="movieDetailSubBg">
-            <BigMovieCards data={popularMovies}></BigMovieCards>
+            <BigMovieCards data={objectMovies}></BigMovieCards>
           </Col>
         </Row>
       </Container>
