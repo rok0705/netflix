@@ -7,7 +7,9 @@ import ReactPaginate from "react-paginate";
 
 const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
   const dispatch = useDispatch();
-  const { updatedMovies } = useSelector((state) => state.movie);
+  const { updatedMovies, fromSearch, keyword } = useSelector(
+    (state) => state.movie
+  );
 
   let originalMovies = Object.assign({}, "");
   const [initial, setInitial] = useState(true);
@@ -69,7 +71,12 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
 
   useEffect(() => {
     setReady(true);
-    dispatch(movieAction.byPage(sortBy, pageNumber));
+    console.log("keyword:", keyword);
+    if (fromSearch) {
+      dispatch(movieAction.byPage("fromSearch", pageNumber, keyword));
+    } else {
+      dispatch(movieAction.byPage(sortBy, pageNumber, keyword));
+    }
     console.log("ready:", ready);
   }, [pageNumber]);
 

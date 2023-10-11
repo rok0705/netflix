@@ -10,6 +10,8 @@ let initialState = {
   trailerId: "",
   updatedMovies: {},
   popularPerPage: {},
+  fromSearch: false,
+  keyword: "",
 };
 
 function movieReducer(state = initialState, action) {
@@ -54,7 +56,19 @@ function movieReducer(state = initialState, action) {
       console.log("At reducer, updatedmoviebypage:", payload.updatedMovies);
       return { ...state, updatedMovies: payload.updatedMovies };
     case "KEYWORD_QUERY":
-      return { ...state, updatedMovies: payload.updatedMovies };
+      console.log("At reducer, keyword_query:", payload.keyword);
+      return {
+        ...state,
+        updatedMovies: payload.updatedMovies,
+        fromSearch: true,
+        keyword: payload.keyword,
+      };
+    case "BY_PAGE_REQUEST_KEYWORD":
+      return {
+        ...state,
+        fromSearch: false,
+        updatedMovies: payload.updatedMovies,
+      };
     default:
       return { ...state };
   }

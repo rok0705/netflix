@@ -145,9 +145,18 @@ function updatedMovies(originalMovies) {
   };
 }
 
-function byPage(sortBy, pageNumber) {
+function byPage(sortBy, pageNumber, keyword) {
   return async (dispatch) => {
-    if (sortBy.includes("Popularity")) {
+    if (sortBy.includes("fromSearch")) {
+      const searchKeywordByPage = api.get(
+        `/search/movie?query=${keyword}&include_adult=false&api_key=${API_KEY}&language=en-US&page=${pageNumber}`
+      );
+      let searchByPage = await searchKeywordByPage;
+      dispatch({
+        type: "BY_PAGE_REQUEST_KEYWORD",
+        payload: { updatedMovies: searchByPage.data },
+      });
+    } else if (sortBy.includes("Popularity")) {
       const popularMoviesPage = api.get(
         `/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
       );
@@ -187,7 +196,7 @@ function searchByKeyword(keyword) {
     let keywordMovies = await searchByKeyword;
     dispatch({
       type: "KEYWORD_QUERY",
-      payload: { updatedMovies: keywordMovies.data },
+      payload: { updatedMovies: keywordMovies.data, keyword: keyword },
     });
   };
 }
