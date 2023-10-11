@@ -145,6 +145,39 @@ function updatedMovies(originalMovies) {
   };
 }
 
+function byPage(sortBy, pageNumber) {
+  return async (dispatch) => {
+    if (sortBy.includes("Popularity")) {
+      const popularMoviesPage = api.get(
+        `/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
+      );
+      let popularPerPage = await popularMoviesPage;
+      dispatch({
+        type: "BY_PAGE_REQUEST",
+        payload: { updatedMovies: popularPerPage.data },
+      });
+    } else if (sortBy.includes("Upcoming")) {
+      const upcomingMoviesPage = api.get(
+        `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
+      );
+      let upcomingPerPage = await upcomingMoviesPage;
+      dispatch({
+        type: "BY_PAGE_REQUEST",
+        payload: { updatedMovies: upcomingPerPage.data },
+      });
+    } else {
+      const topratedMoviesPage = api.get(
+        `/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
+      );
+      let topratedPerPage = await topratedMoviesPage;
+      dispatch({
+        type: "BY_PAGE_REQUEST",
+        payload: { updatedMovies: topratedPerPage.data },
+      });
+    }
+  };
+}
+
 export const movieAction = {
   getMovies,
   getMovieDetail,
@@ -152,4 +185,5 @@ export const movieAction = {
   reverseToprated,
   reverseUpcoming,
   updatedMovies,
+  byPage,
 };

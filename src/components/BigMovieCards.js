@@ -3,8 +3,9 @@ import BigMovieCard from "./BigMovieCard";
 import { Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "./../redux/actions/MovieAction";
+import ReactPaginate from "react-paginate";
 
-const BigMovieCards = ({ data, minValue, maxValue, refresh }) => {
+const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
   const dispatch = useDispatch();
   const { updatedMovies } = useSelector((state) => state.movie);
 
@@ -31,7 +32,11 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh }) => {
   }, [refresh]);
 
   useEffect(() => {
+    if (!data) return;
+    if (data.results === undefined) return;
     originalMovies = Object.assign({}, data);
+
+    console.log("data:", data);
   }, [data && !initial]);
 
   useEffect(() => {}, [originalMovies]);
@@ -52,6 +57,22 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh }) => {
     console.log("updatedList:", updatedMovies);
   }, [updatedMovies]);
 
+  /* pagination */
+  const [pageNumber, setPageNumber] = useState(1);
+  const itemsPerPage = 2; // Number of items to display per page
+
+  const handlePageChange = ({ selected }) => {
+    if (selected < 0) return;
+    setPageNumber(selected + 1);
+    console.log("selected:", selected);
+  };
+
+  useEffect(() => {
+    setReady(true);
+    dispatch(movieAction.byPage(sortBy, pageNumber));
+    console.log("ready:", ready);
+  }, [pageNumber]);
+
   if (ready) {
     return (
       <div>
@@ -63,6 +84,17 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh }) => {
                   <BigMovieCard key={index} movie={movie}></BigMovieCard>
                 </Col>
               ))}
+          </Row>
+          <Row>
+            <ReactPaginate
+              className="PageBox"
+              pageCount={5}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={1}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+            />
           </Row>
         </Container>
       </div>
@@ -78,6 +110,17 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh }) => {
                   <BigMovieCard key={index} movie={movie}></BigMovieCard>
                 </Col>
               ))}
+          </Row>
+          <Row>
+            <ReactPaginate
+              className="PageBox"
+              pageCount={5}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={1}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+            />
           </Row>
         </Container>
       </div>

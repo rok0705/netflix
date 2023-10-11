@@ -141,6 +141,7 @@
 .movieDetailBg {
   justify-content: center;
   background-color: black;
+  height:100%;
 }
 
 .movieOverview {
@@ -151,6 +152,33 @@
   font-size: 18px;
   padding-bottom: 30px;
 
+}
+
+.ItemContainer {
+  height: 200px;
+}
+
+
+.PageBox {
+  font-size: 40px;
+  width: 100%;
+  display: flex;
+  /* columns: 7; */
+  flex-direction: row;
+  justify-content: end;
+  list-style-type: none;
+}
+
+
+.Item {
+  height: 200px;
+}
+
+.paginationContainer {
+  font-size: 25px;
+  width:100%;
+  height:100%;
+  display: flex;
 }
 
 .detailContainer {

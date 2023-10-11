@@ -9,6 +9,7 @@ let initialState = {
   relatedMovies: [],
   trailerId: "",
   updatedMovies: {},
+  popularPerPage: {},
 };
 
 function movieReducer(state = initialState, action) {
@@ -48,6 +49,9 @@ function movieReducer(state = initialState, action) {
       return { ...state, upcomingMovies: payload.upcomingMovies };
     case "UPDATE_MOVIES":
       // console.log("At reducer, updatedMovies:", payload);
+      return { ...state, updatedMovies: payload.updatedMovies };
+    case "BY_PAGE_REQUEST":
+      console.log("At reducer, updatedmoviebypage:", payload.updatedMovies);
       return { ...state, updatedMovies: payload.updatedMovies };
     default:
       return { ...state };
