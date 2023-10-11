@@ -53,6 +53,8 @@ function movieReducer(state = initialState, action) {
     case "BY_PAGE_REQUEST":
       console.log("At reducer, updatedmoviebypage:", payload.updatedMovies);
       return { ...state, updatedMovies: payload.updatedMovies };
+    case "KEYWORD_QUERY":
+      return { ...state, updatedMovies: payload.updatedMovies };
     default:
       return { ...state };
   }

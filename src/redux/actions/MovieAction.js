@@ -178,6 +178,20 @@ function byPage(sortBy, pageNumber) {
   };
 }
 
+function searchByKeyword(keyword) {
+  return async (dispatch) => {
+    const searchByKeyword = api.get(
+      `/search/movie?query=${keyword}&include_adult=false&api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    let keywordMovies = await searchByKeyword;
+    dispatch({
+      type: "KEYWORD_QUERY",
+      payload: { updatedMovies: keywordMovies.data },
+    });
+  };
+}
+
 export const movieAction = {
   getMovies,
   getMovieDetail,
@@ -186,4 +200,5 @@ export const movieAction = {
   reverseUpcoming,
   updatedMovies,
   byPage,
+  searchByKeyword,
 };

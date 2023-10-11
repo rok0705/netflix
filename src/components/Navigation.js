@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Nav,
   NavDropdown,
@@ -9,8 +9,19 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { movieAction } from "./../redux/actions/MovieAction";
+import { useDispatch } from "react-redux";
 
 const Navigation = () => {
+  const [keyword, setKeyword] = useState("");
+  const dispatch = useDispatch();
+
+  const doMovieSearch = (event) => {
+    event.preventDefault();
+    console.log("doSearch");
+    dispatch(movieAction.searchByKeyword(keyword));
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary" bg="black" variant="dark">
       <Container fluid>
@@ -34,14 +45,17 @@ const Navigation = () => {
               Movies
             </Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={(event) => doMovieSearch(event)}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onChange={(event) => setKeyword(event.target.value)}
             />
-            <Button variant="danger">Search</Button>
+            <Button variant="danger" type="submit">
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>

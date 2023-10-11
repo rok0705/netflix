@@ -19,27 +19,6 @@ const Movies = () => {
   const [maxValue, setMaxValue] = useState("2023");
   const [flag, setFlag] = useState(false);
 
-  /* pagination start */
-  // const [pageCount, setPageCount] = useState(1);
-  // const [itemOffset, setItemOffset] = useState(0);
-
-  // const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-  // const itemsPerPage = 3;
-  // const endOffset = itemOffset + itemsPerPage;
-
-  // const currentItems = items.slice(itemOffset, endOffset);
-  // const pageCount = Math.ceil(items.length / itemsPerPage);
-
-  // const handlePageClick = (event) => {
-  //   const newOffset = (event.selected * itemsPerPage) % items.length;
-  //   console.log(
-  //     `User requested page number ${event.selected}, which is offset ${newOffset}`
-  //   );
-  //   setItemOffset(newOffset);
-  // };
-
-  /* pagination end */
-
   useEffect(() => {
     dispatch(movieAction.getMovies());
   }, []);
