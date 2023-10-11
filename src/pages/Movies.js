@@ -6,15 +6,14 @@ import { movieAction } from "./../redux/actions/MovieAction";
 import MultiRangeSlider from "multi-range-slider-react";
 
 const Movies = () => {
-  const { popularMovies, topRatedMovies, upcomingMovies, loading } =
-    useSelector((state) => state.movie);
+  const { popularMovies, topRatedMovies, upcomingMovies } = useSelector(
+    (state) => state.movie
+  );
   const dispatch = useDispatch();
   const [isPopularDescending, setPopularDescending] = useState(true);
   const [isTopratedDescending, setTopratedDescending] = useState(true);
   const [isUpcomingDescending, setUpcomingDescending] = useState(true);
-  const [refresh, setRefresh] = useState(false);
   const [objectMovies, setObjectMovies] = useState("");
-  const [backupMovies, setBackupMovies] = useState("");
   const [sortBy, setSortBy] = useState("Sort by:");
   const [minValue, setMinValue] = useState("1960");
   const [maxValue, setMaxValue] = useState("2023");
@@ -88,13 +87,6 @@ const Movies = () => {
     setObjectMovies(upcomingMovies);
     setFlag(!flag);
   };
-
-  function filterByYear(movie) {
-    let year = movie.release_date.split("-")[0];
-    if (year <= maxValue && year >= minValue) {
-      return movie;
-    }
-  }
 
   const handleInput = (e) => {
     setMinValue(e.minValue);
