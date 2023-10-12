@@ -38,7 +38,7 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
     if (data.results === undefined) return;
     originalMovies = Object.assign({}, data);
 
-    console.log("data:", data);
+    console.log("data,ready:", data, ready);
   }, [data && !initial]);
 
   useEffect(() => {}, [originalMovies]);
@@ -77,8 +77,11 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
     } else {
       dispatch(movieAction.byPage(sortBy, pageNumber, keyword));
     }
-    console.log("ready:", ready);
   }, [pageNumber]);
+
+  useEffect(() => {
+    console.log("ready:", ready);
+  }, [ready]);
 
   if (ready) {
     return (

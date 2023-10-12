@@ -179,6 +179,24 @@
   height: 200px;
 }
 
+.GenresTitle {
+  padding-top: 20px;
+  color:white;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.genreBox {
+  border-radius: 33px;
+  display:flex;
+  padding-top: 20px;
+}
+
+.genreButton {
+  padding-bottom: 7px;
+}
+
 .paginationContainer {
   font-size: 25px;
   width:100%;

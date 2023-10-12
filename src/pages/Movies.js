@@ -4,6 +4,7 @@ import BigMovieCards from "./../components/BigMovieCards";
 import { useDispatch, useSelector } from "react-redux";
 import { movieAction } from "./../redux/actions/MovieAction";
 import MultiRangeSlider from "multi-range-slider-react";
+import GenreBox from "./../components/GenreBox";
 
 const Movies = () => {
   const { popularMovies, topRatedMovies, upcomingMovies } = useSelector(
@@ -20,10 +21,12 @@ const Movies = () => {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
+    console.log("after initial rendering");
     dispatch(movieAction.getMovies());
   }, []);
 
   useEffect(() => {
+    console.log("after popularMovies is fetched");
     setObjectMovies(popularMovies);
     // setPageCount(5);
   }, [popularMovies]);
@@ -169,6 +172,9 @@ const Movies = () => {
                   handleInput(e);
                 }}
               />
+            </Row>
+            <Row>
+              <GenreBox></GenreBox>
             </Row>
           </Col>
           <Col xs={9} className="movieDetailSubBg">

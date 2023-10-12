@@ -201,6 +201,20 @@ function searchByKeyword(keyword) {
   };
 }
 
+function queryByGenre(keyword) {
+  return async (dispatch) => {
+    const searchByGenreApi = api.get(
+      `/discover/movie?include_adult=false&include_video=false&api_key=${API_KEY}&language=en-US&page=1&sort_by=popularity.desc&with_genres=${keyword}`
+    );
+
+    let moviesByGenre = await searchByGenreApi;
+    dispatch({
+      type: "REQUEST_BY_GENRE",
+      payload: { updatedMovies: moviesByGenre.data },
+    });
+  };
+}
+
 export const movieAction = {
   getMovies,
   getMovieDetail,
@@ -210,4 +224,5 @@ export const movieAction = {
   updatedMovies,
   byPage,
   searchByKeyword,
+  queryByGenre,
 };
