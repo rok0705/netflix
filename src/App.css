@@ -95,6 +95,24 @@
 .card {
   width:350px;
   height:200px;
+  transition: 0.70s, transform 0.70s ease;
+  -moz-transition: 0.70s, transform 0.70s ease;
+  -webkit-transition: 0.70s, transform 0.70s ease;
+}
+
+.card:hover {
+  width:402.5px;
+  height:230px;
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari */
+  transform: scale(1.15);
+}
+
+.card-wrapper {
+  width:402.5px;
+  height:230px;
+  display: flex;
+  justify-content: center;
 }
 
 .filter-container {
