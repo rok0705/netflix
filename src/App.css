@@ -131,6 +131,18 @@
   opacity: 1;
 }
 
+.Btn-container{
+  background-color: black;
+  justify-content: end;
+  display:flex;
+}
+
+.closeButton {
+  width:35px;
+  height:35px;
+  background-color: white;
+}
+
 .movieTitle2 {
   font-size: 35px;
   width: 280px;

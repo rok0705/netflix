@@ -9,6 +9,7 @@ import ReviewCards from "../components/ReviewCards";
 import { useLocation } from "react-router-dom";
 import RelatedMovies from "./../components/RelatedMovies";
 import YouTube from "react-youtube";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 
 const MovieDetail = () => {
   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
@@ -80,12 +81,19 @@ const MovieDetail = () => {
         // fullscreen="xl-down"
         // aria-labelledby="contained-modal-title-vcenter"
       >
-        <YouTube videoId={trailerId} opts={opts} onReady={onPlayerReady} />
         {/* <div className="close-button">
           <Button variant="danger" onClick={props.onHide}>
             Close
           </Button>
         </div> */}
+
+        <div className="Btn-container">
+          <AiOutlineCloseSquare
+            className="closeButton"
+            onClick={props.onHide}
+          />
+        </div>
+        <YouTube videoId={trailerId} opts={opts} onReady={onPlayerReady} />
       </Modal>
     );
   }
