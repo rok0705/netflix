@@ -9,7 +9,7 @@ import ReviewCards from "../components/ReviewCards";
 import { useLocation } from "react-router-dom";
 import RelatedMovies from "./../components/RelatedMovies";
 import YouTube from "react-youtube";
-import { AiOutlineCloseSquare } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const MovieDetail = () => {
   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
@@ -72,26 +72,10 @@ const MovieDetail = () => {
 
     const onPlayerReady = (event) => {};
 
-    console.log("fullscreen:", fullscreen);
     return (
-      <Modal
-        {...props}
-        size="xl"
-        centered
-        // fullscreen="xl-down"
-        // aria-labelledby="contained-modal-title-vcenter"
-      >
-        {/* <div className="close-button">
-          <Button variant="danger" onClick={props.onHide}>
-            Close
-          </Button>
-        </div> */}
-
+      <Modal {...props} size="xl" centered>
         <div className="Btn-container">
-          <AiOutlineCloseSquare
-            className="closeButton"
-            onClick={props.onHide}
-          />
+          <AiFillCloseCircle className="closeButton" onClick={props.onHide} />
         </div>
         <YouTube videoId={trailerId} opts={opts} onReady={onPlayerReady} />
       </Modal>
@@ -220,7 +204,7 @@ const MovieDetail = () => {
             <Row className="detailpage-whiteText">
               <Col xs={2}>
                 <Button
-                  variant="link"
+                  variant="danger"
                   className="detailpage-trailer"
                   onClick={() => startYoutube("xl-down")}
                 >

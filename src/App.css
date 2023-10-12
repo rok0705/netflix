@@ -140,7 +140,7 @@
 .closeButton {
   width:35px;
   height:35px;
-  background-color: white;
+  background-color: black;
 }
 
 .movieTitle2 {
@@ -258,7 +258,7 @@
 
 .detailpage-title {
   color:white;
-  font-size: 50px;
+  font-size: 60px;
   text-transform: uppercase;
   margin-bottom: 5px;
   padding-left: 15px;
@@ -266,14 +266,14 @@
 
 .detailpage-tagline {
   color:white;
-  font-size: 25px;
+  font-size: 30px;
   margin-bottom: 15px;
   padding-left: 15px;
 }
 
 .detailpage-overview {
   color:white;
-  font-size: 15px;
+  font-size: 22px;
   width:70%;
   padding-left: 15px;
   padding-top: 16px;
@@ -286,6 +286,7 @@
 
 .detailpage-imdbscore {
   color:white;
+  font-size: 20px;
 }
 
 .detailpage-imdbline {
@@ -298,7 +299,7 @@
 .detailpage-adult {
   color:red;
   font-style: italic;
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bold;
 }
 
@@ -308,10 +309,12 @@
 
 .detailpage-whiteText {
   color:white;
+  font-size: 20px;
 }
 
 .detailpage-item {
   margin-bottom:5px;
+  font-size: 20px;
 }
 
 .detailpage-line {
@@ -343,7 +346,7 @@
   justify-content: center;
   background-color: black;
   font-family:Helvetica;
-  font-size: 16px;
+  font-size: 21px;
 
 }
 
@@ -352,7 +355,7 @@
   justify-content: center;
   background-color: black;
   font-family: 'Helvetica';
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .reviewBox {
