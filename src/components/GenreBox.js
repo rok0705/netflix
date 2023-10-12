@@ -13,16 +13,9 @@ const GenreBox = () => {
   const initialRender2 = useRef(true);
 
   useEffect(() => {
-    console.log("genreList from GenreBox:", genreList);
-  }, [genreList]);
-
-  useEffect(() => {
     if (initialRender.current) {
-      console.log("intialrender is true", initialRender);
       initialRender.current = false;
-      console.log("intialrender is true", initialRender);
     } else {
-      console.log("keyword from GenreBox:", keyword);
       queryGenre();
     }
   }, [keyword]);
@@ -36,7 +29,7 @@ const GenreBox = () => {
     if (initialRender2.current) {
       initialRender2.current = false;
     } else {
-      console.log("keywordId:", keywordId);
+      //   console.log("keywordId:", keywordId);
       dispatch(movieAction.queryByGenre(keywordId));
     }
   }, [keywordId]);

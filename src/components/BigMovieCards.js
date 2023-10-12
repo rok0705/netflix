@@ -7,15 +7,13 @@ import ReactPaginate from "react-paginate";
 
 const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
   const dispatch = useDispatch();
-  const { updatedMovies, fromSearch, keyword } = useSelector(
+  const { updatedMovies, fromSearch, keyword, button } = useSelector(
     (state) => state.movie
   );
+  const [ready, setReady] = useState(false);
+  const initialRendering = useRef(true);
 
   let originalMovies = Object.assign({}, "");
-  // const [initial, setInitial] = useState(true);
-  const [ready, setReady] = useState(false);
-
-  const initialRendering = useRef(true);
 
   function filterByYear(movie) {
     let year = movie.release_date.split("-")[0];
@@ -23,10 +21,6 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
       return movie;
     }
   }
-
-  // useEffect(() => {
-  //   setInitial(false);
-  // }, []);
 
   useEffect(() => {
     console.log("refresh:", refresh);
@@ -39,21 +33,16 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
     if (initialRendering.current) {
       initialRendering.current = false;
     }
-    // if (!data) return;
-    // if (data.results === undefined) return;
     originalMovies = Object.assign({}, data);
 
     console.log("data,ready:", data, ready);
   }, [data]);
-
-  useEffect(() => {}, [originalMovies]);
 
   useEffect(() => {
     if (!data) return;
     if (data.results === undefined) return;
 
     var filteredMovies = data.results.filter(filterByYear);
-    //data.results = filteredMovies;
     originalMovies.results = filteredMovies;
     setReady(true);
     console.log("data vs. originalMoviess:", data, originalMovies);
@@ -62,6 +51,7 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
 
   useEffect(() => {
     console.log("updatedList, ready:", updatedMovies, ready);
+    setReady(true);
   }, [updatedMovies]);
 
   /* pagination */
@@ -73,6 +63,14 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
     setPageNumber(selected + 1);
     console.log("selected:", selected);
   };
+
+  useEffect(() => {
+    console.log("11");
+    if (!button) {
+      console.log("22");
+      setReady(true);
+    }
+  }, [button]);
 
   useEffect(() => {
     setReady(true);

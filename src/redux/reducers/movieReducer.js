@@ -12,7 +12,7 @@ let initialState = {
   popularPerPage: {},
   fromSearch: false,
   keyword: "",
-  GenreMovies: {},
+  button: false,
 };
 
 function movieReducer(state = initialState, action) {
@@ -71,7 +71,7 @@ function movieReducer(state = initialState, action) {
         updatedMovies: payload.updatedMovies,
       };
     case "REQUEST_BY_GENRE":
-      return { ...state, updatedMovies: payload.updatedMovies };
+      return { ...state, updatedMovies: payload.updatedMovies, button: true };
     default:
       return { ...state };
   }
