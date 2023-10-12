@@ -102,6 +102,10 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
             <ReactPaginate
               className="PageBox"
               pageClassName="li-item"
+              breakClassName="break-item"
+              breakLinkClassName="break-item"
+              previousLinkClassName="li-item"
+              nextLinkClassName="li-item"
               pageCount={10}
               pageRangeDisplayed={3}
               previousLabel="<"
@@ -132,6 +136,10 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
             <ReactPaginate
               className="PageBox"
               pageClassName="li-item"
+              breakClassName="break-item"
+              breakLinkClassName="break-item"
+              previousLinkClassName="li-item"
+              nextLinkClassName="li-item"
               pageCount={10}
               pageRangeDisplayed={3}
               previousLabel="<"
