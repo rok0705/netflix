@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import BigMovieCard from "./BigMovieCard";
 import { Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,8 +12,10 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
   );
 
   let originalMovies = Object.assign({}, "");
-  const [initial, setInitial] = useState(true);
+  // const [initial, setInitial] = useState(true);
   const [ready, setReady] = useState(false);
+
+  const initialRendering = useRef(true);
 
   function filterByYear(movie) {
     let year = movie.release_date.split("-")[0];
@@ -22,9 +24,9 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
     }
   }
 
-  useEffect(() => {
-    setInitial(false);
-  }, []);
+  // useEffect(() => {
+  //   setInitial(false);
+  // }, []);
 
   useEffect(() => {
     console.log("refresh:", refresh);
@@ -34,12 +36,15 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
   }, [refresh]);
 
   useEffect(() => {
-    if (!data) return;
-    if (data.results === undefined) return;
+    if (initialRendering.current) {
+      initialRendering.current = false;
+    }
+    // if (!data) return;
+    // if (data.results === undefined) return;
     originalMovies = Object.assign({}, data);
 
     console.log("data,ready:", data, ready);
-  }, [data && !initial]);
+  }, [data]);
 
   useEffect(() => {}, [originalMovies]);
 
@@ -56,7 +61,7 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
   }, [minValue, maxValue]);
 
   useEffect(() => {
-    console.log("updatedList:", updatedMovies);
+    console.log("updatedList, ready:", updatedMovies, ready);
   }, [updatedMovies]);
 
   /* pagination */
