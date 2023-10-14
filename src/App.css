@@ -107,16 +107,16 @@
 }
 
 .card:hover {
-  width:402.5px;
-  height:230px;
-  -ms-transform: scale(1.15); /* IE 9 */
-  -webkit-transform: scale(1.15); /* Safari */
-  transform: scale(1.15);
+  width:385px;
+  height:220px;
+  -ms-transform: scale(1.10); /* IE 9 */
+  -webkit-transform: scale(1.10); /* Safari */
+  transform: scale(1.10);
 }
 
 .card-wrapper {
-  width:402.5px;
-  height:230px;
+  width:385px;
+  height:220px;
   display: flex;
   justify-content: center;
 }
@@ -136,6 +136,7 @@
 .movieSectionHeading {
   color: white;
   font-size: 25px;
+  font-family: 'Brush Script MT', cursive;
 }
 
 .movieFirstRow {
