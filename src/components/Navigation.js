@@ -11,15 +11,20 @@ import {
 import { Link } from "react-router-dom";
 import { movieAction } from "./../redux/actions/MovieAction";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const doMovieSearch = (event) => {
     event.preventDefault();
-    console.log("doSearch");
-    dispatch(movieAction.searchByKeyword(keyword));
+    navigate(`/movies`);
+    if (keyword.trim()) {
+      dispatch(movieAction.searchByKeyword(keyword));
+    }
+    setKeyword("");
   };
 
   return (
@@ -51,6 +56,7 @@ const Navigation = () => {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={keyword}
               onChange={(event) => setKeyword(event.target.value)}
             />
             <Button variant="danger" type="submit">

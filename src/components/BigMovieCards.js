@@ -106,7 +106,7 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
               breakLinkClassName="break-item"
               previousLinkClassName="li-item"
               nextLinkClassName="li-item"
-              pageCount={10}
+              pageCount={99}
               pageRangeDisplayed={3}
               previousLabel="<"
               nextLabel=">"
@@ -140,7 +140,7 @@ const BigMovieCards = ({ data, minValue, maxValue, refresh, sortBy }) => {
               breakLinkClassName="break-item"
               previousLinkClassName="li-item"
               nextLinkClassName="li-item"
-              pageCount={10}
+              pageCount={99}
               pageRangeDisplayed={3}
               previousLabel="<"
               nextLabel=">"
