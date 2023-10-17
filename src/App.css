@@ -19,6 +19,10 @@
   height:1080px;
   display:flex;
   align-items:center;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .banner::before {
