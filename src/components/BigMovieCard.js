@@ -6,7 +6,6 @@ const BigMovieCard = ({ movie }) => {
   const { genreList } = useSelector((state) => state.movie);
 
   function searchGenreName(item) {
-    // console.log("item:", item);
     var i = 0;
     for (i = 0; i < genreList.length; i++) {
       if (genreList[i].id == item) {
@@ -15,17 +14,12 @@ const BigMovieCard = ({ movie }) => {
     }
   }
 
-  //   useEffect(() => {
-  //     console.log("genreList:", genreList, movie?.genre_ids);
-  //   }, [genreList]);
-
   function truncateOverview(text) {
     if (text.length > 200) {
       var truncated = text.substring(0, 200) + "...";
     } else {
       return text;
     }
-    // console.log("truncateOverview:", truncated);
     return truncated;
   }
 

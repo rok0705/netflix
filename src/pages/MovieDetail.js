@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import RelatedMovies from "./../components/RelatedMovies";
 import YouTube from "react-youtube";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { MdLocalMovies } from "react-icons/md";
 
 const MovieDetail = () => {
   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
@@ -203,19 +204,21 @@ const MovieDetail = () => {
             <hr className="detailpage-line"></hr>
             <Row className="detailpage-whiteText">
               <Col xs={2}>
-                <Button
-                  variant="danger"
-                  className="detailpage-trailer"
-                  onClick={() => startYoutube("xl-down")}
-                >
-                  Watch Trailer
-                  {/* {typeof v === "string" && `below ${v.split("_")[0]}`} */}
-                </Button>
+                <Row>
+                  <Button
+                    variant="danger"
+                    onClick={() => startYoutube("xl-down")}
+                  >
+                    <MdLocalMovies size={20} />
+                    Watch Trailer
+                    {/* {typeof v === "string" && `below ${v.split("_")[0]}`} */}
+                  </Button>
 
-                <MyVerticallyCenteredModal
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
+                  <MyVerticallyCenteredModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                </Row>
               </Col>
               <Col xs={10}></Col>
             </Row>
@@ -235,15 +238,17 @@ const MovieDetail = () => {
               </Button>
             </Col>
             <Col xs={2}>
-              <Button
-                variant="danger"
-                className="related-movies-button"
-                onClick={() => setReviewClicked(false)}
-              >
-                RELATED MOVIES {"("}
-                {relatedMovies.length}
-                {")"}
-              </Button>
+              <Row>
+                <Button
+                  variant="danger"
+                  className="related-movies-button"
+                  onClick={() => setReviewClicked(false)}
+                >
+                  RELATED MOVIES {"("}
+                  {relatedMovies.length}
+                  {")"}
+                </Button>
+              </Row>
             </Col>
             <Col xs={8}></Col>
           </Row>

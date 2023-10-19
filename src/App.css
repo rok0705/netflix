@@ -75,7 +75,7 @@
   font-size:60px;
   color:white;
   font-family: 'Brush Script MT', cursive;
-  /* text-transform: uppercase; */
+  /* font-family: Copperplate; */
 }
 
 .banner-description {
@@ -179,7 +179,7 @@
 }
 
 .movieTitle2 {
-  font-size: 35px;
+  font-size: 30px;
   width: 280px;
   z-index: 2;
   color:red;
